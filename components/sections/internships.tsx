@@ -1,156 +1,209 @@
+"use client";
+
+import * as React from "react";
 import Link from "next/link";
-import { ArrowRight, CalendarDays, Check, Star } from "lucide-react";
-import { internshipIntro, internshipPerks, internshipPlans, internshipTracks } from "@/lib/data";
-import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
+import {
+  ArrowRight,
+  Award,
+  CheckCircle2,
+  Clock,
+  Code2,
+  Sparkles,
+  Users,
+} from "lucide-react";
+import { internshipIntro, internshipOffers, type InternshipOffer } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { Reveal } from "@/components/motion/reveal";
+import { InternshipApplyModal } from "@/components/sections/internship-apply-modal";
 
 type InternshipsProps = {
-  /** Full variant (used on /internships) also shows duration plans */
   full?: boolean;
 };
 
 export function Internships({ full = false }: InternshipsProps) {
+  const [selectedOffer, setSelectedOffer] = React.useState<InternshipOffer | null>(null);
+
   return (
     <Section id="internships" aria-labelledby="internships-heading">
       <SectionHeading
         id="internships-heading"
-        eyebrow={full ? "Program tracks" : internshipIntro.eyebrow}
-        title={full ? "Choose the track that fits your goals" : internshipIntro.title}
-        description={full ? "Every track pairs you with a mentor and puts you on real client work from week one." : internshipIntro.description}
+        eyebrow={full ? "Our Internship Programs" : internshipIntro.eyebrow}
+        title={full ? "Choose your software development track" : "Industry-focused internship programs"}
+        description={
+          full
+            ? "We offer two focused internships designed around live engineering tasks, code reviews, and real project delivery."
+            : "Work through practical development workflows on real projects with expert mentorship."
+        }
       />
 
-      {/* Tracks */}
-      <ul className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {internshipTracks.map(({ title, description, skills, durations, icon: Icon }, i) => (
-          <li key={title} className="h-full">
-            <Reveal delay={(i % 3) * 0.08} className="h-full">
-              <article className="flex h-full flex-col rounded-2xl border bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-card">
+      {/* Two Internship Offers Grid */}
+      <div className="mt-12 grid gap-8 md:grid-cols-2 max-w-5xl mx-auto">
+        {internshipOffers.map((offer, index) => {
+          const isPopular = offer.popular;
+          return (
+            <Reveal key={offer.id} delay={index * 0.1} className="h-full">
+              <article
+                className={`relative flex h-full flex-col rounded-3xl border bg-card p-7 sm:p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl ${
+                  isPopular
+                    ? "border-blue-500/60 ring-2 ring-blue-500/20 bg-gradient-to-b from-blue-50/20 to-card dark:from-blue-950/20"
+                    : "hover:border-blue-400/40"
+                }`}
+              >
+                {/* Popular Pill */}
+                {isPopular && (
+                  <div className="absolute -top-3.5 right-6">
+                    <span className="flex items-center gap-1 rounded-full bg-blue-600 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-white shadow-md">
+                      <Sparkles className="size-3" />
+                      Most Popular
+                    </span>
+                  </div>
+                )}
+
+                {/* Header */}
                 <div className="flex items-start justify-between gap-4">
-                  <span className="grid size-12 place-items-center rounded-xl bg-accent text-accent-foreground">
-                    <Icon className="size-6" aria-hidden />
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400">
+                      {offer.category}
+                    </span>
+                    <h3 className="mt-1 text-2xl font-bold text-foreground">
+                      {offer.title}
+                    </h3>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:border-blue-800 dark:bg-blue-950/50 dark:text-blue-300 shrink-0">
+                    <Clock className="size-3.5" />
+                    {offer.duration}
                   </span>
-                  <div className="flex flex-wrap justify-end gap-1.5">
-                    {durations.map((d) => (
-                      <Badge key={d} variant="highlight">
-                        <CalendarDays aria-hidden />
-                        {d}
-                      </Badge>
+                </div>
+
+                {/* Price */}
+                <div className="mt-4 flex items-baseline gap-2">
+                  <span className="text-3xl font-extrabold text-blue-600 dark:text-blue-400">
+                    {offer.price}
+                  </span>
+                  <span className="text-xs text-muted-foreground">all-inclusive</span>
+                </div>
+
+                {/* Short Description */}
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {offer.shortDescription}
+                </p>
+
+                {/* Development Focus Points */}
+                <div className="mt-6 border-t pt-5">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-foreground/80 mb-3">
+                    Development Focus:
+                  </p>
+                  <ul className="space-y-2.5">
+                    {offer.developmentFocus.map((focus, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-xs text-foreground/90">
+                        <CheckCircle2 className="size-4 shrink-0 text-blue-600 dark:text-blue-400 mt-0.5" />
+                        <span>{focus}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Technologies */}
+                <div className="mt-6 border-t pt-4">
+                  <p className="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-2">
+                    Technologies:
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {offer.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-md border bg-muted/50 px-2 py-0.5 text-[11px] font-medium text-foreground/80"
+                      >
+                        {tech}
+                      </span>
                     ))}
                   </div>
                 </div>
-                <h3 className="mt-5 text-lg font-semibold">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
-                <ul className="mt-5 flex flex-wrap gap-1.5" aria-label={`${title} skills`}>
-                  {skills.map((s) => (
-                    <li key={s}>
-                      <Badge variant="outline">{s}</Badge>
-                    </li>
-                  ))}
-                </ul>
+
+                {/* Actions */}
+                <div className="mt-auto grid grid-cols-2 gap-3 pt-7 border-t">
+                  <Button
+                    onClick={() => setSelectedOffer(offer)}
+                    size="default"
+                    className={`rounded-full font-semibold shadow-sm ${
+                      isPopular
+                        ? "bg-blue-600 text-white hover:bg-blue-700"
+                        : "bg-foreground text-background hover:bg-foreground/90"
+                    }`}
+                  >
+                    Apply Now
+                  </Button>
+
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="default"
+                    className="rounded-full border-muted-foreground/30 font-medium hover:border-foreground"
+                  >
+                    <Link href={`/internships/${offer.slug}`}>
+                      View Details
+                      <ArrowRight className="ml-1 size-3.5" />
+                    </Link>
+                  </Button>
+                </div>
               </article>
             </Reveal>
-          </li>
-        ))}
-        <li className="h-full md:col-span-2 lg:col-span-1">
-          <Reveal delay={0.16} className="h-full">
-            <div className="bg-brand-gradient relative flex h-full flex-col justify-between overflow-hidden rounded-2xl p-6 text-white shadow-brand">
-              <div className="bg-grid absolute inset-0 opacity-20" aria-hidden />
-              <div className="relative">
-                <h3 className="text-lg font-semibold">Not sure which track?</h3>
-                <p className="mt-2 text-sm leading-relaxed text-indigo-50">
-                  Book a free 15-minute counselling call and we&apos;ll recommend a path based on your skills and goals.
-                </p>
-              </div>
-              <Button asChild variant="white" className="relative mt-6 w-fit">
-                <Link href="/contact?interest=Internship">
-                  Talk to a mentor
-                  <ArrowRight aria-hidden />
-                </Link>
-              </Button>
-            </div>
-          </Reveal>
-        </li>
-      </ul>
-
-      {/* Duration plans */}
-      {full ? (
-        <div className="mt-24">
-          <SectionHeading
-            eyebrow="Durations"
-            title="45 days, 3 months or 6 months"
-            description="Pick a duration that matches your semester schedule and career goals."
-          />
-          <ul className="mt-12 grid gap-6 lg:grid-cols-3">
-            {internshipPlans.map((plan, i) => (
-              <li key={plan.duration}>
-                <Reveal delay={i * 0.08} className="h-full">
-                  <article
-                    className={cn(
-                      "relative flex h-full flex-col rounded-2xl border bg-card p-7 shadow-soft",
-                      plan.featured && "border-primary/50 shadow-glow lg:-translate-y-3",
-                    )}
-                  >
-                    {plan.featured ? (
-                      <Badge variant="default" className="absolute -top-3 left-7">
-                        <Star aria-hidden /> Most popular
-                      </Badge>
-                    ) : null}
-                    <p className="text-sm font-semibold text-brand">{plan.label}</p>
-                    <h3 className="mt-2 font-display text-3xl font-bold">{plan.duration}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{plan.description}</p>
-                    <ul className="mt-6 flex flex-col gap-3 border-t pt-6">
-                      {plan.includes.map((item) => (
-                        <li key={item} className="flex items-center gap-2.5 text-sm">
-                          <Check className="size-4 shrink-0 text-success" aria-hidden />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
-                    <Button asChild variant={plan.featured ? "default" : "outline"} className="mt-8 w-full">
-                      <Link href="#apply">Apply for {plan.duration}</Link>
-                    </Button>
-                  </article>
-                </Reveal>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : null}
-
-      {/* Perks */}
-      <div className="mt-20 rounded-3xl border bg-surface p-6 sm:p-10">
-        <h3 className="text-center text-2xl font-bold sm:text-3xl">What you get</h3>
-        <ul className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {internshipPerks.map(({ title, description, icon: Icon }, i) => (
-            <li key={title}>
-              <Reveal delay={i * 0.06} className="flex flex-col items-center text-center">
-                <span className="grid size-14 place-items-center rounded-2xl border bg-card text-brand shadow-soft">
-                  <Icon className="size-6" aria-hidden />
-                </span>
-                <h4 className="mt-4 font-semibold">{title}</h4>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
-              </Reveal>
-            </li>
-          ))}
-        </ul>
-        {!full ? (
-          <div className="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-            <Button asChild size="lg">
-              <Link href="/internships#apply">
-                Apply Now
-                <ArrowRight aria-hidden />
-              </Link>
-            </Button>
-            <Button asChild size="lg" variant="outline">
-              <Link href="/internships">View all programs</Link>
-            </Button>
-          </div>
-        ) : null}
+          );
+        })}
       </div>
+
+      {/* Perks summary when on full page */}
+      {full && (
+        <div className="mt-20 max-w-5xl mx-auto rounded-3xl border bg-muted/20 p-8 sm:p-10">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <h3 className="text-2xl font-bold text-foreground">Why Intern at NV Technology?</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              We bridge the gap between classroom theory and real software delivery.
+            </p>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-3">
+            <div className="rounded-2xl border bg-card p-5 text-center">
+              <div className="mx-auto flex size-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600 dark:bg-blue-950/50 dark:text-blue-400 mb-3">
+                <Code2 className="size-6" />
+              </div>
+              <h4 className="text-sm font-bold text-foreground">Live Client Architecture</h4>
+              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                Work with Git repositories, pull requests, and modern engineering conventions.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border bg-card p-5 text-center">
+              <div className="mx-auto flex size-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600 dark:bg-blue-950/50 dark:text-blue-400 mb-3">
+                <Users className="size-6" />
+              </div>
+              <h4 className="text-sm font-bold text-foreground">Senior Mentorship</h4>
+              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                Regular reviews and feedback from working engineers who guide your development.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border bg-card p-5 text-center">
+              <div className="mx-auto flex size-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600 dark:bg-blue-950/50 dark:text-blue-400 mb-3">
+                <Award className="size-6" />
+              </div>
+              <h4 className="text-sm font-bold text-foreground">Verified Credentials</h4>
+              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                Receive an official internship certificate and completion letter for your resume.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Shared Apply Modal */}
+      <InternshipApplyModal
+        offer={selectedOffer}
+        isOpen={Boolean(selectedOffer)}
+        onClose={() => setSelectedOffer(null)}
+      />
     </Section>
   );
 }

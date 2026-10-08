@@ -62,6 +62,31 @@ export type InternshipPlan = {
   includes: string[];
   featured?: boolean;
 };
+export type InternshipRoadmapStep = {
+  title: string;
+  subtitle: string;
+  detail: string;
+};
+export type InternshipOffer = {
+  id: string;
+  slug: string;
+  title: string;
+  shortTitle: string;
+  badge?: string;
+  category: string;
+  duration: string;
+  price: string;
+  priceNumeric: number;
+  shortDescription: string;
+  overview: string;
+  developmentFocus: string[];
+  whatYouGet: string[];
+  roadmap: InternshipRoadmapStep[];
+  technologies: string[];
+  whoCanJoin: string[];
+  faqs: { question: string; answer: string }[];
+  popular?: boolean;
+};
 export type Level = "Beginner" | "Intermediate" | "Advanced";
 export type Mode = "Online" | "Offline" | "Hybrid";
 export type TrainingProgram = {
@@ -74,13 +99,40 @@ export type TrainingProgram = {
   highlights: string[];
 };
 export type ProcessStep = Feature & { step: string };
-export type ProjectCategory = "web" | "mobile" | "software";
-export type Project = {
+export type ProjectCategory = "all" | "mern" | "web" | "mobile" | "software";
+export type ProjectScreenshot = {
   title: string;
-  category: ProjectCategory;
   description: string;
+  src?: string;
+  alt?: string;
+};
+export type ProjectFaq = { question: string; answer: string };
+export type Project = {
+  id: string;
+  slug: string;
+  title: string;
+  technology: string;
+  category: ProjectCategory;
+  price: string;
+  numericPrice: number;
+  originalPrice?: string;
+  originalNumericPrice?: number;
+  currency: string;
+  demoUrl: string;
+  demoEmbedUrl: string;
+  shortDescription: string;
+  overview: string;
+  features: string[];
+  technologies: string[];
+  included: string[];
+  requirements: string[];
+  screenshots: ProjectScreenshot[];
+  faqs: ProjectFaq[];
+  description: string;
+  longDescription: string;
   tags: string[];
   image: string;
+  youtubeUrl: string;
 };
 export type Testimonial = {
   name: string;
@@ -106,14 +158,14 @@ export const siteConfig = {
     "NV Technology delivers web, mobile and custom software solutions for growing businesses, and builds industry-ready talent through hands-on internships and technical training.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   foundedYear: 2019,
-  // PLACEHOLDER contact details
-  email: "hello@nvtechnology.example.com",
-  phone: "+91 98765 43210",
-  phoneHref: "tel:+919876543210",
-  address: "Office 401, Tech Hub, MG Road, Your City, India 000000",
-  hours: "Mon – Sat, 9:30 AM – 6:30 PM",
-  // PLACEHOLDER map — swap the query for your real address
-  mapEmbedUrl: "https://www.google.com/maps?q=MG+Road+India&output=embed",
+  email: "hmdeveloper1718@gmail.com",
+  phone: "+91 9537412245",
+  phoneHref: "tel:+919537412245",
+  whatsappHref: "https://wa.me/919537412245",
+  youtubeUrl: "https://youtube.com/@harshpathaknv",
+  address: "Ahmedabad, Gujarat, India",
+  hours: "Mon – Sat, 10:00 AM – 7:00 PM",
+  mapEmbedUrl: "https://www.google.com/maps?q=Ahmedabad+Gujarat+India&output=embed",
   keywords: [
     "software development company",
     "web development",
@@ -131,7 +183,7 @@ export const navLinks: NavLink[] = [
   { label: "Services", href: "/#services" },
   { label: "Internships", href: "/internships" },
   { label: "Training", href: "/training" },
-  { label: "Projects", href: "/#projects" },
+  { label: "Projects", href: "/projects" },
   { label: "Contact", href: "/contact" },
 ];
 
@@ -276,6 +328,179 @@ export const internshipIntro = {
   description:
     "Work alongside our engineers, ship features that real users rely on, and graduate with a portfolio, a certificate and a recommendation that opens doors.",
 };
+
+export const internshipFaqs = [
+  {
+    question: "Who can join the internship?",
+    answer:
+      "Aspiring developers and early-career engineers looking for practical software-development experience can apply. Internships are designed around real project work inside a development environment.",
+  },
+  {
+    question: "Do I need prior coding experience?",
+    answer:
+      "Foundational programming knowledge helps. The 15-day internship is an intensive introduction to professional workflows, while the 3-month internship expects consistent practice on real tasks.",
+  },
+  {
+    question: "Will I receive a certificate?",
+    answer:
+      "Yes. Internship programs include a verifiable certificate after successful completion. Internships also include an official completion letter.",
+  },
+  {
+    question: "What technologies do you work with?",
+    answer:
+      "Our stack includes HTML, CSS, JavaScript, React, Node.js, Express, MongoDB, REST APIs, Git/GitHub, and related engineering tools used in production delivery.",
+  },
+  {
+    question: "Is the internship online or offline?",
+    answer:
+      "Internships are flexible and remotely accessible. Online interns participate in real-time reviews, code stand-ups, and live mentorship.",
+  },
+  {
+    question: "How do I start a conversation or apply?",
+    answer:
+      "Click Apply Now, choose your preferred track, or contact us directly on WhatsApp (+91 9537412245). Our team will guide you through enrollment.",
+  },
+  {
+    question: "Can I request source code for individual projects?",
+    answer:
+      "Yes. Browse our Featured Development Projects section where complete source code packages with documentation are available.",
+  },
+  {
+    question: "Do you provide project documentation?",
+    answer:
+      "Yes. All projects and internship modules include setup guides, database schemas, and technical walkthrough notes.",
+  },
+  {
+    question: "Can solutions and internships be customized?",
+    answer:
+      "Yes. Scope, stack emphasis, and learning goals can be customized after discussion with our engineering team.",
+  },
+  {
+    question: "How can I contact the team?",
+    answer:
+      "Reach out directly via WhatsApp (+91 9537412245), call +91 9537412245, or email hmdeveloper1718@gmail.com.",
+  },
+];
+
+export const internshipOffers: InternshipOffer[] = [
+  {
+    id: "internship-15-day",
+    slug: "15-day",
+    title: "15-Day Development Internship",
+    shortTitle: "15-Day Internship",
+    category: "Internship",
+    duration: "15 Days",
+    price: "₹2,000",
+    priceNumeric: 2000,
+    popular: false,
+    shortDescription:
+      "An intensive short-term development internship designed to give practical exposure to real engineering workflows.",
+    overview:
+      "This 15-day development internship is a focused introduction to professional software delivery. Interns join a development environment, complete assigned engineering tasks, and finish with a reviewed mini-project.",
+    developmentFocus: [
+      "Development environment setup",
+      "Git branching and GitHub collaboration",
+      "Frontend delivery tasks",
+      "Backend/API fundamentals",
+      "Project review and delivery process",
+    ],
+    whatYouGet: [
+      "Technical mentorship throughout the internship",
+      "Practical development tasks",
+      "Internship certificate",
+      "Completion letter",
+    ],
+    roadmap: [
+      {
+        title: "Days 1–3",
+        subtitle: "Environment Setup + Git/GitHub",
+        detail: "Tooling, repository setup, commits, branches, and pull-request basics.",
+      },
+      {
+        title: "Days 4–7",
+        subtitle: "Frontend Development",
+        detail: "UI tasks, component structure, and practical frontend assignments.",
+      },
+      {
+        title: "Days 8–11",
+        subtitle: "Backend/API Development",
+        detail: "API consumption, simple endpoints, and connecting UI to data.",
+      },
+      {
+        title: "Days 12–14",
+        subtitle: "Project Development",
+        detail: "Build and polish the assigned internship project.",
+      },
+      {
+        title: "Day 15",
+        subtitle: "Project Review + Certificate Process",
+        detail: "Final review, feedback, internship certificate, and completion letter process.",
+      },
+    ],
+    technologies: ["HTML", "CSS", "JavaScript", "Git", "GitHub", "React basics"],
+    whoCanJoin: [
+      "Computer science and IT graduates or undergraduates",
+      "Early-career developers seeking structured industry exposure",
+      "Anyone preparing a first professional internship on their resume",
+    ],
+    faqs: internshipFaqs,
+  },
+  {
+    id: "internship-3-month",
+    slug: "3-month",
+    title: "3-Month Software Development Internship",
+    shortTitle: "3-Month Internship",
+    badge: "MOST POPULAR",
+    category: "Internship",
+    duration: "3 Months",
+    price: "₹9,000",
+    priceNumeric: 9000,
+    popular: true,
+    shortDescription:
+      "Work through a structured development experience focused on real-world projects, modern technologies and professional engineering workflows.",
+    overview:
+      "The 3-month software development internship takes participants from guided practice to shipping a real-world project. Interns work with industry tools, receive code reviews, and complete an application suitable for professional portfolios.",
+    developmentFocus: [
+      "Full-stack web fundamentals & component architecture",
+      "Real-world REST APIs with Express & Node.js",
+      "Database schema design & queries in MongoDB",
+      "Production Git workflows, pull requests and code reviews",
+      "Shipping & deploying a complete portfolio project",
+    ],
+    whatYouGet: [
+      "Technical mentorship throughout the internship",
+      "Practical development tasks",
+      "Real-world project on your portfolio",
+      "Code reviews from senior engineers",
+      "Internship certificate",
+      "Completion letter & recommendation",
+    ],
+    roadmap: [
+      {
+        title: "Month 1",
+        subtitle: "Foundation + Development Workflow",
+        detail: "Core web fundamentals, Git workflow, component thinking, and professional development habits.",
+      },
+      {
+        title: "Month 2",
+        subtitle: "Feature Development + APIs",
+        detail: "Build features across frontend and backend, integrate REST APIs, and participate in reviews.",
+      },
+      {
+        title: "Month 3",
+        subtitle: "Real-World Project + Deployment + Final Review",
+        detail: "Ship a complete project, cover deployment basics, and complete final evaluation.",
+      },
+    ],
+    technologies: ["React", "Node.js", "Express", "MongoDB", "Git", "REST APIs"],
+    whoCanJoin: [
+      "Candidates seeking a longer, career-oriented development internship",
+      "Developers who want frontend + backend project experience",
+      "Aspiring engineers preparing for junior delivery roles",
+    ],
+    faqs: internshipFaqs,
+  },
+];
 
 export const internshipTracks: InternshipTrack[] = [
   {
@@ -508,54 +733,281 @@ export const stats: Stat[] = [
    Projects
 =================================================================== */
 export const projectCategories: { value: ProjectCategory | "all"; label: string }[] = [
-  { value: "all", label: "All" },
-  { value: "web", label: "Web" },
-  { value: "mobile", label: "Mobile" },
-  { value: "software", label: "Software" },
+  { value: "all", label: "All Projects" },
+  { value: "mern", label: "MERN Stack" },
+  { value: "web", label: "Web Applications" },
+  { value: "software", label: "Management Systems" },
 ];
 
 export const projects: Project[] = [
   {
-    title: "ShopNest Commerce",
-    category: "web",
-    description: "Headless e-commerce storefront with sub-second page loads and UPI checkout.",
-    tags: ["Next.js", "Stripe", "Sanity"],
+    id: "mern-ecommerce",
+    slug: "mern-ecommerce",
+    title: "MERN E-Commerce Platform",
+    technology: "MERN Stack",
+    category: "mern",
+    price: "₹4,000",
+    numericPrice: 4000,
+    originalPrice: "₹8,000",
+    originalNumericPrice: 8000,
+    currency: "₹",
+    demoUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
+    demoEmbedUrl: "https://www.youtube.com/embed/1xqRzBhEta0?start=1619",
+    shortDescription:
+      "Full-stack commerce platform featuring authentication, product management, cart functionality, order processing and an administrative dashboard.",
+    overview:
+      "A structured MERN commerce platform with catalog, cart, checkout-style flows, and admin product management. Demo package suitable for product delivery and source-code handoff.",
+    features: [
+      "Product catalog and details",
+      "Cart and checkout UI",
+      "User authentication screens",
+      "Order listing",
+      "Admin product management",
+    ],
+    technologies: ["MongoDB", "Express.js", "React.js", "Node.js"],
+    included: [
+      "Complete source code",
+      "Project documentation",
+      "Setup guide",
+      "Sample database structure",
+      "Project explanation notes",
+    ],
+    requirements: [
+      "Node.js LTS installed",
+      "MongoDB local or Atlas instance",
+      "Basic familiarity with npm scripts",
+    ],
+    screenshots: [
+      { title: "Dashboard", description: "Admin and store management overview with revenue metrics" },
+      { title: "List view", description: "Product catalogue grid with category filtering and instant search" },
+      { title: "Detail view", description: "Product item, cart drawer, and checkout flow" },
+    ],
+    faqs: [
+      {
+        question: "Is this production-ready for live payments?",
+        answer: "This is a development package. Live payment gateway integration is not included by default.",
+      },
+      {
+        question: "Do you provide an explanation?",
+        answer: "Yes. Demo documentation includes setup steps and a project walkthrough outline.",
+      },
+    ],
+    description:
+      "Full-stack commerce platform featuring authentication, product management, cart functionality, order processing and an administrative dashboard.",
+    longDescription:
+      "A structured MERN commerce platform with catalog, cart, checkout-style flows, and admin product management. Demo package suitable for product delivery and source-code handoff.",
+    tags: ["MongoDB", "Express.js", "React.js", "Node.js"],
     image: "/projects/shopnest.svg",
+    youtubeUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
   },
   {
-    title: "MediBook",
-    category: "mobile",
-    description: "Doctor appointment app with reminders, video consults and digital prescriptions.",
-    tags: ["Flutter", "Firebase"],
-    image: "/projects/medibook.svg",
-  },
-  {
-    title: "FleetOps ERP",
-    category: "software",
-    description: "Logistics ERP that tracks 300+ vehicles, drivers and invoices in real time.",
-    tags: ["React", "Node.js", "PostgreSQL"],
-    image: "/projects/fleetops.svg",
-  },
-  {
-    title: "LearnSphere LMS",
-    category: "web",
-    description: "Learning platform with live classes, quizzes and progress analytics.",
-    tags: ["Next.js", "MongoDB", "AWS"],
+    id: "mern-blog",
+    slug: "mern-blog",
+    title: "MERN Blog Management System",
+    technology: "MERN Stack",
+    category: "mern",
+    price: "₹3,500",
+    numericPrice: 3500,
+    originalPrice: "₹7,000",
+    originalNumericPrice: 7000,
+    currency: "₹",
+    demoUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
+    demoEmbedUrl: "https://www.youtube.com/embed/1xqRzBhEta0?start=1619",
+    shortDescription:
+      "Content platform for publishing and managing posts, categories, authors and an administrative dashboard.",
+    overview:
+      "A structured blogging platform for content operations. Demo software package that can be customized for client or internal use.",
+    features: [
+      "Post CRUD",
+      "Categories and tags",
+      "Author profiles",
+      "Admin dashboard",
+      "Rich content layout",
+    ],
+    technologies: ["MongoDB", "Express.js", "React.js", "Node.js"],
+    included: [
+      "Complete source code",
+      "Project documentation",
+      "Setup guide",
+      "Database schema notes",
+      "Explanation outline",
+    ],
+    requirements: ["Node.js LTS", "MongoDB", "Code editor"],
+    screenshots: [
+      { title: "Dashboard", description: "Content management and publishing analytics overview" },
+      { title: "List view", description: "Searchable article feed with tag filters and author profiles" },
+      { title: "Detail view", description: "Rich reader interface with comments and share features" },
+    ],
+    faqs: [
+      {
+        question: "Can this be customized for a client?",
+        answer: "Yes. Scope and modules can be discussed with the development team.",
+      },
+    ],
+    description:
+      "Content platform for publishing and managing posts, categories, authors and an administrative dashboard.",
+    longDescription:
+      "A structured blogging platform for content operations. Demo software package that can be customized for client or internal use.",
+    tags: ["MongoDB", "Express.js", "React.js", "Node.js"],
     image: "/projects/learnsphere.svg",
+    youtubeUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
   },
   {
-    title: "FitTrack",
-    category: "mobile",
-    description: "Fitness companion with workout plans, streaks and wearable sync.",
-    tags: ["React Native", "Node.js"],
+    id: "student-management",
+    slug: "student-management",
+    title: "Student Management System",
+    technology: "MERN Stack",
+    category: "mern",
+    price: "₹3,000",
+    numericPrice: 3000,
+    originalPrice: "₹6,000",
+    originalNumericPrice: 6000,
+    currency: "₹",
+    demoUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
+    demoEmbedUrl: "https://www.youtube.com/embed/1xqRzBhEta0?start=1619",
+    shortDescription:
+      "Operations platform for records, module assignment, search and role-based administrative workflows.",
+    overview:
+      "A practical management system covering core CRUD modules and role-based screens. Sample/demo software product.",
+    features: [
+      "Student records",
+      "Module assignment",
+      "Search and filters",
+      "Dashboard stats",
+      "Role-based UI",
+    ],
+    technologies: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    included: [
+      "Source code",
+      "Documentation",
+      "Setup guide",
+      "Database",
+      "Project explanation",
+    ],
+    requirements: ["Node.js", "MongoDB"],
+    screenshots: [
+      { title: "Dashboard", description: "Institutional metrics, enrollment counters and activity overview" },
+      { title: "List view", description: "Searchable student roster with batch filters and status indicators" },
+      { title: "Detail view", description: "Student profile, course enrollments, and record breakdown" },
+    ],
+    faqs: [
+      {
+        question: "Is support included?",
+        answer: "Demo packages include setup guidance. Live support hours can be defined later.",
+      },
+    ],
+    description:
+      "Operations platform for records, module assignment, search and role-based administrative workflows.",
+    longDescription:
+      "A practical management system covering core CRUD modules and role-based screens. Sample/demo software product.",
+    tags: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    image: "/projects/fleetops.svg",
+    youtubeUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
+  },
+  {
+    id: "time-tracking",
+    slug: "time-tracking",
+    title: "Time Tracking Application",
+    technology: "MERN Stack",
+    category: "mern",
+    price: "₹4,000",
+    numericPrice: 4000,
+    originalPrice: "₹8,000",
+    originalNumericPrice: 8000,
+    currency: "₹",
+    demoUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
+    demoEmbedUrl: "https://www.youtube.com/embed/1xqRzBhEta0?start=1619",
+    shortDescription:
+      "Track tasks, time entries, and reports for teams or individual productivity workflows.",
+    overview:
+      "A time-tracking application with timers, task lists, and reporting views for teams and individual productivity workflows.",
+    features: [
+      "Timer and manual entries",
+      "Project/task grouping",
+      "Weekly reports",
+      "User accounts",
+      "Export-ready tables",
+    ],
+    technologies: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    included: [
+      "Complete source code",
+      "Setup guide",
+      "Documentation",
+      "Database notes",
+      "Explanation",
+    ],
+    requirements: ["Node.js LTS", "MongoDB"],
+    screenshots: [
+      { title: "Dashboard", description: "Active stopwatch timer, sprint velocity, and weekly time logs" },
+      { title: "List view", description: "Categorized timesheets sorted by client, task, and project tags" },
+      { title: "Detail view", description: "Weekly analytics breakdown and exportable timesheet" },
+    ],
+    faqs: [
+      {
+        question: "Can features be customized?",
+        answer: "Yes. Programs and projects can be customized after discussion with the team.",
+      },
+    ],
+    description:
+      "Track tasks, time entries, and reports for teams or individual productivity workflows.",
+    longDescription:
+      "A time-tracking application with timers, task lists, and reporting views for teams and individual productivity workflows.",
+    tags: ["React.js", "Node.js", "Express.js", "MongoDB"],
     image: "/projects/fittrack.svg",
+    youtubeUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
   },
   {
-    title: "StockWise Inventory",
-    category: "software",
-    description: "Multi-warehouse inventory system with barcode scanning and GST reports.",
-    tags: ["Python", "FastAPI", "React"],
-    image: "/projects/stockwise.svg",
+    id: "job-portal",
+    slug: "job-portal",
+    title: "Job Portal",
+    technology: "MERN Stack",
+    category: "mern",
+    price: "₹5,000",
+    numericPrice: 5000,
+    originalPrice: "₹10,000",
+    originalNumericPrice: 10000,
+    currency: "₹",
+    demoUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
+    demoEmbedUrl: "https://www.youtube.com/embed/1xqRzBhEta0?start=1619",
+    shortDescription:
+      "A job listing platform with employer posts, candidate profiles, and application tracking screens.",
+    overview:
+      "A larger MERN platform covering job search, applications, and dashboard views for candidates and employers. Demo software package.",
+    features: [
+      "Job listings and search",
+      "Candidate profiles",
+      "Application flow",
+      "Employer dashboard",
+      "Saved jobs",
+    ],
+    technologies: ["MongoDB", "Express.js", "React.js", "Node.js"],
+    included: [
+      "Complete source code",
+      "Project documentation",
+      "Setup guide",
+      "Database",
+      "Project explanation",
+      "Support notes",
+    ],
+    requirements: ["Node.js LTS", "MongoDB", "Git"],
+    screenshots: [
+      { title: "Dashboard", description: "Employer portal with active job postings and applicant stats" },
+      { title: "List view", description: "Job listings directory with salary, location, and role filters" },
+      { title: "Detail view", description: "Job description page with requirement breakdown and 1-click apply" },
+    ],
+    faqs: [
+      {
+        question: "Does this include live job data?",
+        answer: "No. Sample/demo data is included so the application can run locally.",
+      },
+    ],
+    description:
+      "A job listing platform with employer posts, candidate profiles, and application tracking screens.",
+    longDescription:
+      "A larger MERN platform covering job search, applications, and dashboard views for candidates and employers. Demo software package.",
+    tags: ["MongoDB", "Express.js", "React.js", "Node.js"],
+    image: "/projects/medibook.svg",
+    youtubeUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
   },
 ];
 
@@ -701,7 +1153,7 @@ export const footerGroups: FooterGroup[] = [
     links: [
       { label: "About", href: "/#about" },
       { label: "Process", href: "/#process" },
-      { label: "Projects", href: "/#projects" },
+      { label: "Projects", href: "/projects" },
       { label: "Testimonials", href: "/#testimonials" },
       { label: "Contact", href: "/contact" },
     ],
@@ -739,5 +1191,10 @@ export const pageMeta = {
     title: "Contact",
     description:
       "Get a quote for your software project or ask about internships and training at NV Technology.",
+  },
+  projects: {
+    title: "Projects",
+    description:
+      "Explore our portfolio of web, mobile and software projects — from e-commerce platforms to enterprise ERPs. View demos, features and pricing.",
   },
 };
