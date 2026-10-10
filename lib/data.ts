@@ -158,7 +158,7 @@ export const siteConfig = {
     "NV Technology delivers web, mobile and custom software solutions for growing businesses, and builds industry-ready talent through hands-on internships and technical training.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   foundedYear: 2019,
-  email: "hmdeveloper1718@gmail.com",
+  email: "nvtechnology1711@gmail.com",
   phone: "+91 9537412245",
   phoneHref: "tel:+919537412245",
   whatsappHref: "https://wa.me/919537412245",
@@ -208,8 +208,8 @@ export const hero = {
 };
 
 export const heroStats: HeroStat[] = [
-  { value: "150+", label: "Projects delivered" },
-  { value: "2,000+", label: "Students trained" },
+  { value: "60+", label: "Projects Repositories" },
+  { value: "1 Lakh+", label: "Students Learn from Youtube Channel" },
   { value: "4.9/5", label: "Average rating" },
 ];
 
@@ -378,7 +378,7 @@ export const internshipFaqs = [
   {
     question: "How can I contact the team?",
     answer:
-      "Reach out directly via WhatsApp (+91 9537412245), call +91 9537412245, or email hmdeveloper1718@gmail.com.",
+      "Reach out directly via WhatsApp (+91 9537412245), call +91 9537412245, or email nvtechnology1711@gmail.com.",
   },
 ];
 
@@ -390,8 +390,8 @@ export const internshipOffers: InternshipOffer[] = [
     shortTitle: "15-Day Internship",
     category: "Internship",
     duration: "15 Days",
-    price: "₹2,000",
-    priceNumeric: 2000,
+    price: "₹1500",
+    priceNumeric: 1500,
     popular: false,
     shortDescription:
       "An intensive short-term development internship designed to give practical exposure to real engineering workflows.",
@@ -453,8 +453,8 @@ export const internshipOffers: InternshipOffer[] = [
     badge: "MOST POPULAR",
     category: "Internship",
     duration: "3 Months",
-    price: "₹9,000",
-    priceNumeric: 9000,
+    price: "₹4000",
+    priceNumeric: 4000,
     popular: true,
     shortDescription:
       "Work through a structured development experience focused on real-world projects, modern technologies and professional engineering workflows.",
@@ -723,10 +723,10 @@ export const processSteps: ProcessStep[] = [
    Stats
 =================================================================== */
 export const stats: Stat[] = [
-  { value: 150, suffix: "+", label: "Projects Delivered", icon: Rocket },
-  { value: 80, suffix: "+", label: "Happy Clients", icon: HeartHandshake },
-  { value: 2000, suffix: "+", label: "Students Trained", icon: GraduationCap },
-  { value: 6, suffix: "+", label: "Years of Experience", icon: BadgeCheck },
+  { value: 60, suffix: "+", label: "Projects Repositories", icon: Rocket },
+  { value: 85, suffix: "+", label: "Student Already Enrolled", icon: HeartHandshake },
+  { value: 1, suffix: " Lakh+", label: "Student Learns from Youtube Channel", icon: GraduationCap },
+  { value: 5, suffix: "+", label: "Years of Experience", icon: BadgeCheck },
 ];
 
 /* ==================================================================
@@ -746,8 +746,8 @@ export const projects: Project[] = [
     title: "MERN E-Commerce Platform",
     technology: "MERN Stack",
     category: "mern",
-    price: "₹4,000",
-    numericPrice: 4000,
+    price: "₹3200",
+    numericPrice: 3200,
     originalPrice: "₹8,000",
     originalNumericPrice: 8000,
     currency: "₹",
@@ -904,111 +904,289 @@ export const projects: Project[] = [
     image: "/projects/fleetops.svg",
     youtubeUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
   },
-  {
-    id: "time-tracking",
-    slug: "time-tracking",
-    title: "Time Tracking Application",
-    technology: "MERN Stack",
+  // {
+  //   id: "time-tracking",
+  //   slug: "time-tracking",
+  //   title: "Time Tracking Application",
+  //   technology: "MERN Stack",
+  //   category: "mern",
+  //   price: "₹2800",
+  //   numericPrice: 2800,
+  //   originalPrice: "₹6000",
+  //   originalNumericPrice: 6000,
+  //   currency: "₹",
+  //   demoUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
+  //   demoEmbedUrl: "https://www.youtube.com/embed/1xqRzBhEta0?start=1619",
+  //   shortDescription:
+  //     "Track tasks, time entries, and reports for teams or individual productivity workflows.",
+  //   overview:
+  //     "A time-tracking application with timers, task lists, and reporting views for teams and individual productivity workflows.",
+  //   features: [
+  //     "Timer and manual entries",
+  //     "Project/task grouping",
+  //     "Weekly reports",
+  //     "User accounts",
+  //     "Export-ready tables",
+  //   ],
+  //   technologies: ["React.js", "Node.js", "Express.js", "MongoDB"],
+  //   included: [
+  //     "Complete source code",
+  //     "Setup guide",
+  //     "Documentation",
+  //     "Database notes",
+  //     "Explanation",
+  //   ],
+  //   requirements: ["Node.js LTS", "MongoDB"],
+  //   screenshots: [
+  //     { title: "Dashboard", description: "Active stopwatch timer, sprint velocity, and weekly time logs" },
+  //     { title: "List view", description: "Categorized timesheets sorted by client, task, and project tags" },
+  //     { title: "Detail view", description: "Weekly analytics breakdown and exportable timesheet" },
+  //   ],
+  //   faqs: [
+  //     {
+  //       question: "Can features be customized?",
+  //       answer: "Yes. Programs and projects can be customized after discussion with the team.",
+  //     },
+  //   ],
+  //   description:
+  //     "Track tasks, time entries, and reports for teams or individual productivity workflows.",
+  //   longDescription:
+  //     "A time-tracking application with timers, task lists, and reporting views for teams and individual productivity workflows.",
+  //   tags: ["React.js", "Node.js", "Express.js", "MongoDB"],
+  //   image: "/projects/fittrack.svg",
+  //   youtubeUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
+  // },
+  // {
+  //   id: "job-portal",
+  //   slug: "job-portal",
+  //   title: "Job Portal",
+  //   technology: "MERN Stack",
+  //   category: "mern",
+  //   price: "₹3000",
+  //   numericPrice: 3000,
+  //   originalPrice: "₹6000",
+  //   originalNumericPrice: 6000,
+  //   currency: "₹",
+  //   demoUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
+  //   demoEmbedUrl: "https://www.youtube.com/embed/1xqRzBhEta0?start=1619",
+  //   shortDescription:
+  //     "A job listing platform with employer posts, candidate profiles, and application tracking screens.",
+  //   overview:
+  //     "A larger MERN platform covering job search, applications, and dashboard views for candidates and employers. Demo software package.",
+  //   features: [
+  //     "Job listings and search",
+  //     "Candidate profiles",
+  //     "Application flow",
+  //     "Employer dashboard",
+  //     "Saved jobs",
+  //   ],
+  //   technologies: ["MongoDB", "Express.js", "React.js", "Node.js"],
+  //   included: [
+  //     "Complete source code",
+  //     "Project documentation",
+  //     "Setup guide",
+  //     "Database",
+  //     "Project explanation",
+  //     "Support notes",
+  //   ],
+  //   requirements: ["Node.js LTS", "MongoDB", "Git"],
+  //   screenshots: [
+  //     { title: "Dashboard", description: "Employer portal with active job postings and applicant stats" },
+  //     { title: "List view", description: "Job listings directory with salary, location, and role filters" },
+  //     { title: "Detail view", description: "Job description page with requirement breakdown and 1-click apply" },
+  //   ],
+  //   faqs: [
+  //     {
+  //       question: "Does this include live job data?",
+  //       answer: "No. Sample/demo data is included so the application can run locally.",
+  //     },
+  //   ],
+  //   description:
+  //     "A job listing platform with employer posts, candidate profiles, and application tracking screens.",
+  //   longDescription:
+  //     "A larger MERN platform covering job search, applications, and dashboard views for candidates and employers. Demo software package.",
+  //   tags: ["MongoDB", "Express.js", "React.js", "Node.js"],
+  //   image: "/projects/medibook.svg",
+  //   youtubeUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
+  // },
+    {
+    id: "interview-management-system",
+    slug: "interview-management-system",
+    title: "Interview Management System",
+    technology: "MERN Stack + AI",
     category: "mern",
-    price: "₹4,000",
-    numericPrice: 4000,
-    originalPrice: "₹8,000",
-    originalNumericPrice: 8000,
+    price: "₹3000",
+    numericPrice: 3000,
+    originalPrice: "₹6000",
+    originalNumericPrice: 6000,
     currency: "₹",
-    demoUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
-    demoEmbedUrl: "https://www.youtube.com/embed/1xqRzBhEta0?start=1619",
+
+    demoUrl: "",
+    demoEmbedUrl: "",
+
     shortDescription:
-      "Track tasks, time entries, and reports for teams or individual productivity workflows.",
+      "A full-stack interview management platform with AI-graded technical assessments, candidate tracking, interviewer reviews, and automated email notifications.",
+
     overview:
-      "A time-tracking application with timers, task lists, and reporting views for teams and individual productivity workflows.",
+      "A comprehensive MERN application for managing the recruitment process, from candidate creation and secure online assessments to AI-powered evaluation, interview scheduling, interviewer feedback, and final hiring decisions. Supports Gemini AI with Groq fallback, automated scoring, anti-cheating mechanisms, and role-based dashboards.",
+
     features: [
-      "Timer and manual entries",
-      "Project/task grouping",
-      "Weekly reports",
-      "User accounts",
-      "Export-ready tables",
+      "Candidate creation and management",
+      "Secure, time-limited assessment links",
+      "AI-powered technical question generation",
+      "Automatic MCQ and multi-select grading",
+      "AI evaluation of descriptive answers",
+      "Gemini AI with Groq fallback",
+      "Timed assessments with previous and next navigation",
+      "Webcam photo capture during assessments",
+      "Tab-switch detection and automatic test submission",
+      "Automated assessment reports via email",
+      "Candidate shortlisting and rejection workflows",
+      "Round 2 interview scheduling",
+      "Interviewer management and authentication",
+      "Interviewer dashboard and structured reviews",
+      "Interview rescheduling and review-edit approval workflows",
+      "Final candidate selection and rejection",
+      "Optional Google Calendar and Google Meet integration",
+      "Code execution sandbox using self-hosted Piston",
+      "Experience-based question selection"
     ],
-    technologies: ["React.js", "Node.js", "Express.js", "MongoDB"],
+
+    technologies: [
+      "MongoDB",
+      "Express.js",
+      "React.js",
+      "Node.js",
+      "Vite",
+      "Redux Toolkit",
+      "SCSS",
+      "Google Gemini API",
+      "Groq API",
+      "JWT",
+      "Mongoose",
+      "Docker",
+      "Piston",
+      "Cloudinary",
+      "Nodemailer / SMTP",
+      "Google Calendar API"
+    ],
+
     included: [
       "Complete source code",
-      "Setup guide",
-      "Documentation",
-      "Database notes",
-      "Explanation",
-    ],
-    requirements: ["Node.js LTS", "MongoDB"],
-    screenshots: [
-      { title: "Dashboard", description: "Active stopwatch timer, sprint velocity, and weekly time logs" },
-      { title: "List view", description: "Categorized timesheets sorted by client, task, and project tags" },
-      { title: "Detail view", description: "Weekly analytics breakdown and exportable timesheet" },
-    ],
-    faqs: [
-      {
-        question: "Can features be customized?",
-        answer: "Yes. Programs and projects can be customized after discussion with the team.",
-      },
-    ],
-    description:
-      "Track tasks, time entries, and reports for teams or individual productivity workflows.",
-    longDescription:
-      "A time-tracking application with timers, task lists, and reporting views for teams and individual productivity workflows.",
-    tags: ["React.js", "Node.js", "Express.js", "MongoDB"],
-    image: "/projects/fittrack.svg",
-    youtubeUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
-  },
-  {
-    id: "job-portal",
-    slug: "job-portal",
-    title: "Job Portal",
-    technology: "MERN Stack",
-    category: "mern",
-    price: "₹5,000",
-    numericPrice: 5000,
-    originalPrice: "₹10,000",
-    originalNumericPrice: 10000,
-    currency: "₹",
-    demoUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
-    demoEmbedUrl: "https://www.youtube.com/embed/1xqRzBhEta0?start=1619",
-    shortDescription:
-      "A job listing platform with employer posts, candidate profiles, and application tracking screens.",
-    overview:
-      "A larger MERN platform covering job search, applications, and dashboard views for candidates and employers. Demo software package.",
-    features: [
-      "Job listings and search",
-      "Candidate profiles",
-      "Application flow",
-      "Employer dashboard",
-      "Saved jobs",
-    ],
-    technologies: ["MongoDB", "Express.js", "React.js", "Node.js"],
-    included: [
-      "Complete source code",
+      "Backend and frontend projects",
       "Project documentation",
-      "Setup guide",
-      "Database",
-      "Project explanation",
-      "Support notes",
+      "Environment configuration examples",
+      "Local setup and installation guide",
+      "Database models and API architecture",
+      "Admin and interviewer workflows",
+      "AI evaluation integration",
+      "Email notification workflows",
+      "Unit tests and testing instructions",
+      "Docker-based code execution setup"
     ],
-    requirements: ["Node.js LTS", "MongoDB", "Git"],
+
+    requirements: [
+      "Node.js 18 or later",
+      "MongoDB 6 or later",
+      "Docker",
+      "Google Gemini API key",
+      "Groq API key",
+      "Cloudinary account",
+      "SMTP email credentials",
+      "Git"
+    ],
+
     screenshots: [
-      { title: "Dashboard", description: "Employer portal with active job postings and applicant stats" },
-      { title: "List view", description: "Job listings directory with salary, location, and role filters" },
-      { title: "Detail view", description: "Job description page with requirement breakdown and 1-click apply" },
+      {
+        title: "Admin Dashboard",
+        description:
+          "Recruitment management interface for managing candidates, assessments, interviewers, and hiring decisions."
+      },
+      {
+        title: "Candidate Assessment",
+        description:
+          "Secure online test interface featuring timed questions, navigation controls, webcam photo capture, and assessment submission."
+      },
+      {
+        title: "AI Evaluation Report",
+        description:
+          "Assessment results with scores, question-level breakdowns, and AI-generated feedback."
+      },
+      {
+        title: "Interview Scheduling",
+        description:
+          "Schedule Round 2 interviews, assign interviewers, configure meeting details, and manage rescheduling requests."
+      },
+      {
+        title: "Interviewer Portal",
+        description:
+          "Interviewer dashboard for upcoming and completed interviews, candidate reviews, ratings, and feedback."
+      },
+      {
+        title: "Candidate Management",
+        description:
+          "Track candidate progress through assessment, shortlisting, interviews, and final hiring decisions."
+      }
     ],
+
     faqs: [
       {
-        question: "Does this include live job data?",
-        answer: "No. Sample/demo data is included so the application can run locally.",
+        question: "Does the project support AI-powered evaluation?",
+        answer:
+          "Yes. It uses Google Gemini models for evaluating descriptive answers, with Groq Llama models as a fallback."
       },
+      {
+        question: "Can HR manage multiple interview rounds?",
+        answer:
+          "Yes. The system supports initial technical assessments, Round 2 interview scheduling, interviewer reviews, and final selection decisions."
+      },
+      {
+        question: "Does the application include anti-cheating features?",
+        answer:
+          "Yes. Switching browser tabs or losing window focus can trigger automatic test submission and flag the assessment session."
+      },
+      {
+        question: "Is a paid AI API key required?",
+        answer:
+          "AI evaluation requires configured Gemini and Groq API credentials. Applicable provider usage limits and charges depend on your accounts and API plans."
+      },
+      {
+        question: "Does the coding assessment support code execution?",
+        answer:
+          "Yes. The project uses a self-hosted Piston Docker instance for code execution. Configure the required language runtimes before using the coding test."
+      },
+      {
+        question: "Can interviews be scheduled using Google Calendar?",
+        answer:
+          "Yes. Optional Google OAuth integration supports Google Calendar events and Google Meet links. Manual meeting URLs can be used without this integration."
+      }
     ],
+
     description:
-      "A job listing platform with employer posts, candidate profiles, and application tracking screens.",
+      "A full-stack interview management platform with AI-powered technical assessments, candidate tracking, interviewer reviews, and automated recruitment workflows.",
+
     longDescription:
-      "A larger MERN platform covering job search, applications, and dashboard views for candidates and employers. Demo software package.",
-    tags: ["MongoDB", "Express.js", "React.js", "Node.js"],
-    image: "/projects/medibook.svg",
-    youtubeUrl: "https://www.youtube.com/watch?v=1xqRzBhEta0&t=1619s",
-  },
+      "This MERN-based recruitment management system streamlines the hiring lifecycle, including candidate registration, secure timed assessments, AI-powered answer evaluation, automated email reports, interviewer scheduling, structured feedback, and final hiring decisions. It combines a React and Redux Toolkit frontend with a layered Node.js and Express backend, MongoDB persistence, Gemini and Groq AI integrations, and a Docker-based Piston code execution sandbox.",
+
+    tags: [
+      "MongoDB",
+      "Express.js",
+      "React.js",
+      "Node.js",
+      "MERN Stack",
+      "AI Interview",
+      "Google Gemini",
+      "Groq",
+      "Redux Toolkit",
+      "JWT Authentication",
+      "Recruitment Management",
+      "Docker"
+    ],
+
+    image: "/projects/interview-management-system.svg",
+
+    youtubeUrl: ""
+  }
 ];
 
 /* ==================================================================
