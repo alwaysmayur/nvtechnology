@@ -725,7 +725,7 @@ export const processSteps: ProcessStep[] = [
 export const stats: Stat[] = [
   { value: 60, suffix: "+", label: "Projects Repositories", icon: Rocket },
   { value: 85, suffix: "+", label: "Student Already Enrolled", icon: HeartHandshake },
-  { value: 1, suffix: " Lakh+", label: "Student Learns from Youtube Channel", icon: GraduationCap },
+  { value: 1, suffix: " Lakh+", label: "Student Learn from Youtube Channel", icon: GraduationCap },
   { value: 5, suffix: "+", label: "Years of Experience", icon: BadgeCheck },
 ];
 
